@@ -1,0 +1,14 @@
+{
+  "description": "Ed25519 signature test vectors for Tatastu Proof. The signing public key is from the service's transparency log.",
+  "signingPublicKeySpkiBase64": "MCowBQYDK2VwAyEAjkbyCDlB3cmafwjelXu3vE7mE001NwWkQCWRvVhsNBg=",
+  "signingPublicKeySpkiHex": "302a300506032b65700321008e46f2083941ddc99a7f08de957bb7bc4ee6134d353705a4402591bd586c3418",
+  "canonicalReceiptFormat": "{contentHash}:{creatorId}:{proofId}:{signedAt}:{signingKeyId}:{version} (fields sorted alphabetically, joined with ':')",
+  "note": "To verify a signature from a real stamp: import the SPKI public key, base64url-decode the 'signature' field, UTF-8 encode the canonical receipt, then call crypto.subtle.verify.",
+  "verificationAlgorithm": {
+    "keyImport": "crypto.subtle.importKey('spki', base64Decode(signingPublicKeySpkiBase64), {name:'Ed25519'}, false, ['verify'])",
+    "signatureDecoding": "base64url decode the 'signature' field from the ProofReceipt",
+    "messageEncoding": "UTF-8 encode the canonical receipt string",
+    "verify": "crypto.subtle.verify({name:'Ed25519'}, key, signature, message)"
+  },
+  "liveVerification": "Fetch a real proof bundle from GET https://proof.tatastu.dev/proof/{id}/bundle — it includes signingPublicKey and signature. Pass to verifyOffline() in verify/offline.ts."
+}

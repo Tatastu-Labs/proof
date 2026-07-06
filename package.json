@@ -1,0 +1,57 @@
+{
+  "name": "@tatastu/proof",
+  "version": "0.1.0",
+  "description": "One API call stamps any content with a permanent, publicly verifiable provenance record.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./verify/offline": {
+      "import": "./verify/offline.js",
+      "types": "./verify/offline.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "verify",
+    "test-vectors"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "content-authenticity",
+    "provenance",
+    "ed25519",
+    "merkle",
+    "arweave",
+    "c2pa",
+    "eu-ai-act",
+    "mcp",
+    "ai-content",
+    "content-credentials",
+    "proof-of-authorship"
+  ],
+  "author": "Tatastu Labs",
+  "license": "MIT",
+  "homepage": "https://tatastu.dev/content-authenticity",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tatastu-labs/proof"
+  },
+  "bugs": {
+    "url": "https://github.com/tatastu-labs/proof/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

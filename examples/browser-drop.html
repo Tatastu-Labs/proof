@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify File Authenticity — Tatastu Proof</title>
+  <style>
+    :root {
+      --paper: #faf8f4;
+      --ink: #1c1914;
+      --ink-muted: #7c7467;
+      --accent: #b14b2c;
+      --line: #e4ddd3;
+      --radius: 8px;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    body { background: var(--paper); color: var(--ink); margin: 0; padding: 2rem 1rem; }
+    h1 { font-family: Georgia, serif; font-size: 1.75rem; margin: 0 0 0.25rem; }
+    p.sub { color: var(--ink-muted); margin: 0 0 2rem; font-size: 0.9rem; }
+    #drop {
+      border: 2px dashed var(--line);
+      border-radius: var(--radius);
+      padding: 3rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    #drop.over { border-color: var(--accent); background: #fdf3ef; }
+    #drop input { display: none; }
+    #drop label { cursor: pointer; color: var(--accent); text-decoration: underline; }
+    #status { max-width: 520px; margin: 1.5rem auto 0; }
+    .result {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+    .authentic { border-color: #4a7c59; background: #f4faf6; }
+    .superseded { border-color: #b18a2c; background: #fdf9f0; }
+    .none { border-color: var(--line); background: var(--paper); }
+    .badge { display: inline-block; font-size: 0.75rem; font-weight: 600;
+             padding: 0.2em 0.6em; border-radius: 4px; margin-bottom: 0.5rem; }
+    .badge-authentic { background: #4a7c59; color: white; }
+    .badge-superseded { background: #b18a2c; color: white; }
+    .badge-none { background: var(--line); color: var(--ink-muted); }
+    a { color: var(--accent); }
+    code { font-family: 'IBM Plex Mono', monospace; font-size: 0.82em;
+           background: var(--line); padding: 0.1em 0.4em; border-radius: 3px; word-break: break-all; }
+    .spinner { display: inline-block; width: 1rem; height: 1rem;
+               border: 2px solid var(--line); border-top-color: var(--accent);
+               border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    footer { max-width: 520px; margin: 2rem auto 0; color: var(--ink-muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <h1>Verify file authenticity</h1>
+  <p class="sub">Drop any file to check its provenance stamp. No account required. Content never leaves your device.</p>
+
+  <div id="drop">
+    <p>Drop a file here or <label for="file-input">browse</label></p>
+    <input type="file" id="file-input">
+  </div>
+
+  <div id="status"></div>
+
+  <footer>
+    <p>Powered by <a href="https://tatastu.dev/content-authenticity">Tatastu Proof</a>.
+       SHA-256 is computed in your browser using the Web Crypto API — the file itself is never uploaded.
+       Only the 64-character hash is sent to verify against the stamp registry.</p>
+  </footer>
+
+  <script>
+    const drop = document.getElementById('drop')
+    const status = document.getElementById('status')
+
+    drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('over') })
+    drop.addEventListener('dragleave', () => drop.classList.remove('over'))
+    drop.addEventListener('drop', e => { e.preventDefault(); drop.classList.remove('over'); handleFile(e.dataTransfer.files[0]) })
+    document.getElementById('file-input').addEventListener('change', e => handleFile(e.target.files[0]))
+
+    async function sha256Hex(arrayBuffer) {
+      const digest = await crypto.subtle.digest('SHA-256', arrayBuffer)
+      return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('')
+    }
+
+    async function handleFile(file) {
+      if (!file) return
+      status.innerHTML = `<p><span class="spinner"></span> Hashing <strong>${file.name}</strong>…</p>`
+
+      let contentHash
+      try {
+        const ab = await file.arrayBuffer()
+        contentHash = await sha256Hex(ab)
+      } catch {
+        status.innerHTML = '<p style="color:red">Could not read file.</p>'
+        return
+      }
+
+      status.innerHTML = `<p><span class="spinner"></span> Checking stamp registry for <code>${contentHash.slice(0,16)}…</code></p>`
+
+      let result
+      try {
+        const res = await fetch('https://proof.tatastu.dev/verify', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ contentHash })
+        })
+        result = await res.json()
+      } catch {
+        status.innerHTML = '<p style="color:red">Could not reach the stamp registry. Check your connection.</p>'
+        return
+      }
+
+      renderResult(file.name, contentHash, result.proofs || [])
+    }
+
+    function renderResult(filename, hash, proofs) {
+      if (proofs.length === 0) {
+        status.innerHTML = `
+          <div class="result none">
+            <span class="badge badge-none">No record found</span>
+            <p><strong>${filename}</strong> has no stamp in the Tatastu Proof registry.</p>
+            <p style="font-size:0.85rem;color:var(--ink-muted)">Hash checked: <code>${hash}</code></p>
+            <p style="font-size:0.85rem">Want to stamp it? <a href="https://tatastu.dev/proof">Get started →</a></p>
+          </div>`
+        return
+      }
+
+      const latest = proofs[0]
+      const isSuperseded = !!latest.supersededBy
+      const cls = isSuperseded ? 'superseded' : 'authentic'
+      const label = isSuperseded ? 'Older version' : 'Authentic'
+      const badgeCls = isSuperseded ? 'badge-superseded' : 'badge-authentic'
+
+      let html = `
+        <div class="result ${cls}">
+          <span class="badge ${badgeCls}">${label}</span>
+          <p><strong>${filename}</strong> matches a stamped record.</p>
+          <p style="font-size:0.85rem">
+            Signed: ${new Date(latest.signedAt).toLocaleString()}<br>
+            Creator: <code>${latest.creatorId}</code><br>
+            Status: ${latest.status}
+          </p>`
+
+      if (isSuperseded) {
+        html += `<p style="font-size:0.85rem">A newer version exists: <a href="${proofs[proofs.length-1].verifyUrl}" target="_blank">view current →</a></p>`
+      }
+
+      html += `<p><a href="${latest.verifyUrl}" target="_blank">View full provenance record →</a></p>`
+      html += `<p style="font-size:0.85rem;color:var(--ink-muted)">Hash: <code>${hash}</code></p>`
+
+      if (proofs.length > 1) {
+        html += `<details style="font-size:0.85rem;margin-top:0.5rem"><summary>${proofs.length} records total</summary><ul>`
+        for (const p of proofs) {
+          html += `<li>[${p.status}] ${new Date(p.signedAt).toLocaleString()} — <a href="${p.verifyUrl}" target="_blank">${p.proofId}</a></li>`
+        }
+        html += `</ul></details>`
+      }
+
+      html += `</div>`
+      status.innerHTML = html
+    }
+  </script>
+</body>
+</html>

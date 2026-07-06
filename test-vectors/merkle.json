@@ -1,0 +1,80 @@
+{
+  "description": "RFC 6962 Merkle test vectors. Domain prefixes: 0x00 for leaf hashes, 0x01 for interior nodes.",
+  "leafEncoding": "UTF-8 bytes of '{proofId}:{contentHash}:{signedAt}'",
+  "emptyTree": {
+    "root": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "singleLeaf": {
+    "input": "proof1:abc123:1751760000000",
+    "leafHash": "c7be98ad41693a03c1b3fffdb3ad380c4dcae5e84f0a8658f54dbf65e445964a",
+    "root": "c7be98ad41693a03c1b3fffdb3ad380c4dcae5e84f0a8658f54dbf65e445964a",
+    "inclusionPath": []
+  },
+  "twoLeaves": {
+    "leaves": [
+      "proof1:abc123:1751760000000",
+      "proof2:def456:1751760001000"
+    ],
+    "leafHashes": [
+      "c7be98ad41693a03c1b3fffdb3ad380c4dcae5e84f0a8658f54dbf65e445964a",
+      "67d879dc3cea294cc5b7cdcc4fb1d8e67b4f042bb7b6512dba2ae53df98e250c"
+    ],
+    "root": "b00d62559d4949431f6ea8f8447fe77914338fa1b16044039e1b19d724d5962e",
+    "inclusionPaths": [
+      [
+        {
+          "hash": "67d879dc3cea294cc5b7cdcc4fb1d8e67b4f042bb7b6512dba2ae53df98e250c",
+          "side": "right"
+        }
+      ],
+      [
+        {
+          "hash": "c7be98ad41693a03c1b3fffdb3ad380c4dcae5e84f0a8658f54dbf65e445964a",
+          "side": "left"
+        }
+      ]
+    ]
+  },
+  "threeLeaves": {
+    "leaves": [
+      "proof1:abc123:1751760000000",
+      "proof2:def456:1751760001000",
+      "proof3:ghi789:1751760002000"
+    ],
+    "leafHashes": [
+      "c7be98ad41693a03c1b3fffdb3ad380c4dcae5e84f0a8658f54dbf65e445964a",
+      "67d879dc3cea294cc5b7cdcc4fb1d8e67b4f042bb7b6512dba2ae53df98e250c",
+      "7b9fc32046870479cf174a1d0a49ae6b8002f65f76833b0c5bfb15f98bc01955"
+    ],
+    "root": "a31276370ca992c2d7fccdd8af914180d24bc73d3090020e318797b0fa2384f8",
+    "splitPoint": 2,
+    "inclusionPaths": [
+      [
+        {
+          "hash": "67d879dc3cea294cc5b7cdcc4fb1d8e67b4f042bb7b6512dba2ae53df98e250c",
+          "side": "right"
+        },
+        {
+          "hash": "7b9fc32046870479cf174a1d0a49ae6b8002f65f76833b0c5bfb15f98bc01955",
+          "side": "right"
+        }
+      ],
+      [
+        {
+          "hash": "c7be98ad41693a03c1b3fffdb3ad380c4dcae5e84f0a8658f54dbf65e445964a",
+          "side": "left"
+        },
+        {
+          "hash": "7b9fc32046870479cf174a1d0a49ae6b8002f65f76833b0c5bfb15f98bc01955",
+          "side": "right"
+        }
+      ],
+      [
+        {
+          "hash": "b00d62559d4949431f6ea8f8447fe77914338fa1b16044039e1b19d724d5962e",
+          "side": "left"
+        }
+      ]
+    ]
+  }
+}
