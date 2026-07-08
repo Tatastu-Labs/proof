@@ -11,18 +11,17 @@
       "types": "./dist/index.d.ts"
     },
     "./verify/offline": {
-      "import": "./verify/offline.js",
-      "types": "./verify/offline.d.ts"
+      "import": "./dist/verify/offline.js",
+      "types": "./dist/verify/offline.d.ts"
     }
   },
   "files": [
     "dist",
-    "verify",
     "test-vectors"
   ],
   "scripts": {
     "build": "tsc",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test": "npm run build && node --test \"test/*.test.mjs\"",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

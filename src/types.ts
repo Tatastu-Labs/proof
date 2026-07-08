@@ -99,28 +99,36 @@ export interface VerifyProof {
 }
 
 /**
- * A self-contained bundle for offline verification.
- * Fetch with `GET /proof/:id/bundle`.
+ * A self-contained bundle for offline verification, exactly as returned by
+ * `GET /proof/:id/bundle`. Pass it straight to verifyOffline().
  */
 export interface ProofBundle {
-  proof: {
-    proofId: string
+  format: string
+  version: number
+  receipt: {
     contentHash: string
     creatorId: string
-    status: ProofStatus
-    version: number
+    proofId: string
     signedAt: number
     signingKeyId: string
-    signature: string
+    version: number
   }
+  /** Base64 Ed25519 signature by the service over the canonical receipt JSON. */
+  signature: string
   signingPublicKey: string | null
+  /** Present once the daily batch has closed and the tree was built. */
   merkle?: {
-    root: string
-    leafIndex: number
+    leaf: string
+    leafIndex: number | null
     path: Array<{ hash: string; side: "left" | "right" }>
-  }
-  anchor?: {
+    root: string
+  } | null
+  anchors?: {
     arweaveTx: string | null
     baseAnchorTx: string | null
-  }
+    anchoredAt: number | null
+  } | null
+  /** Creator did:key binding, present when the stamp was key-bound. */
+  creatorPubkey?: string | null
+  creatorSig?: string | null
 }

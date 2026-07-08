@@ -11,8 +11,11 @@ export async function hashText(text: string): Promise<string> {
 
 /** Hash arbitrary bytes and return the hex digest. */
 export async function hashBytes(bytes: Uint8Array | ArrayBuffer): Promise<string> {
-  const buf = bytes instanceof Uint8Array ? bytes.buffer : bytes
-  const digest = await crypto.subtle.digest("SHA-256", buf)
+  // Pass a view, not `.buffer`: a Uint8Array can be a window into a larger
+  // (possibly shared) buffer — Node Buffers from the pool are exactly that —
+  // and hashing the whole backing buffer would hash the wrong bytes.
+  const view = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes)
+  const digest = await crypto.subtle.digest("SHA-256", view as BufferSource)
   return bufToHex(digest)
 }
 
@@ -49,9 +52,13 @@ export async function hashBlob(blob: Blob): Promise<string> {
  * In Node you'll typically do:
  *   import { readFile } from "node:fs/promises"
  *   const hash = await hashNodeBuffer(await readFile("myfile.pdf"))
+ *
+ * (Buffer is a Uint8Array subclass, so no Node type dependency is needed —
+ * and hashBytes respects the view's offset/length, which matters for pooled
+ * Buffers.)
  */
-export async function hashNodeBuffer(buf: Uint8Array | Buffer): Promise<string> {
-  return hashBytes(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength) as ArrayBuffer)
+export async function hashNodeBuffer(buf: Uint8Array): Promise<string> {
+  return hashBytes(buf)
 }
 
 function bufToHex(buf: ArrayBuffer): string {
