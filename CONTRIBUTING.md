@@ -26,10 +26,11 @@ npm install
 npm run build
 ```
 
-To run an example against the live service:
+To run an example against the live service (needs a free key from
+[proof.tatastu.dev/account](https://proof.tatastu.dev/account)):
 
 ```bash
-npx tsx examples/eu-ai-act-label.ts
+TATASTU_API_KEY=pk_... npx tsx examples/eu-ai-act-label.ts
 ```
 
 ## Testing the offline verifier

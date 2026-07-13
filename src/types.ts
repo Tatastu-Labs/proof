@@ -28,8 +28,10 @@ export interface StampOptions {
   previousProofId?: string
 
   /**
-   * Your API key (from tatastu.dev/proof). Required for paid tiers; omitted for free-tier
-   * usage up to the monthly quota.
+   * Your API key (from https://proof.tatastu.dev/account, free to create, no card).
+   * Required to create a stamp, unless you pay per-stamp with x402 instead: there
+   * is no anonymous free tier for creation. Once you have a key, the first 25
+   * stamps each month are free. Verification never needs a key.
    */
   apiKey?: string
 }
@@ -66,7 +68,7 @@ export interface ProofReceipt {
   /** Previous proof ID if this is a superseding stamp. */
   previousProofId?: string
 
-  /** Plain-text byline: `"Verified · https://tatastu.dev/p/..."` */
+  /** Plain-text byline: `"Verified · https://proof.tatastu.dev/p/..."` */
   byline: string
 
   /** One-line HTML byline, always XSS-safe. */

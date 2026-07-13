@@ -12,8 +12,8 @@
  * "this creator claimed this content at this time." Claimed time (signedAt)
  * and proven time (anchored) are distinct and both surfaced in every receipt.
  *
- * @see https://tatastu.dev/content-authenticity
  * @see https://proof.tatastu.dev
+ * @see https://proof.tatastu.dev/docs
  */
 
 export type { ProofBundle, ProofReceipt, ProofStatus, StampOptions, VerifyProof, VerifyResult } from "./types.js"
@@ -63,13 +63,17 @@ async function apiFetch<T>(
  * Use `hashText()`, `hashBytes()`, or `hashNodeBuffer()` from this package
  * to compute it locally — content bytes are never sent to the service.
  *
+ * Creating a stamp needs a free API key (sign in once at
+ * https://proof.tatastu.dev/account, 25 stamps/month, no card) or an x402
+ * micropayment; there is no anonymous free tier. Verifying a hash needs neither.
+ *
  * @example
  * ```ts
  * import { stamp, hashText } from "@tatastu/proof"
  *
  * const hash = await hashText("Hello, world!")
- * const receipt = await stamp({ contentHash: hash, title: "My post" })
- * console.log(receipt.verifyUrl)  // https://tatastu.dev/p/prf_01jz...
+ * const receipt = await stamp({ contentHash: hash, title: "My post", apiKey: process.env.TATASTU_API_KEY })
+ * console.log(receipt.verifyUrl)  // https://proof.tatastu.dev/p/prf_01jz...
  * ```
  */
 export async function stamp(opts: StampOptions): Promise<ProofReceipt> {

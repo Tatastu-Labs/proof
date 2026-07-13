@@ -22,18 +22,20 @@ import { readFile } from "node:fs/promises"
 const bytes = await readFile("./report.pdf")
 const contentHash = await hashNodeBuffer(bytes)
 
-// Create a stamp
+// Create a stamp. Sign in free at https://proof.tatastu.dev/account for a key
+// (no card, 25 stamps/month); creating a stamp always needs a key or an x402
+// payment, verification never does.
 const receipt = await stamp({
   contentHash,
   contentType: "application/pdf",
   title: "Q3 Financial Report",
-  apiKey: process.env.TATASTU_API_KEY, // omit for free tier
+  apiKey: process.env.TATASTU_API_KEY,
 })
 
 console.log(receipt.verifyUrl)
-// → https://tatastu.dev/p/prf_01jz...
+// → https://proof.tatastu.dev/p/prf_01jz...
 console.log(receipt.byline)
-// → "Verified · https://tatastu.dev/p/prf_01jz..."
+// → "Verified · https://proof.tatastu.dev/p/prf_01jz..."
 ```
 
 ## Browser

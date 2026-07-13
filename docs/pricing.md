@@ -3,9 +3,11 @@
 ## Free tier
 
 - 25 stamps/month
-- Unlimited verification (no account required)
+- Unlimited verification (no account, no API key, ever)
 - Full offline verifiability once anchored
-- No API key required
+- Sign in once at [proof.tatastu.dev/account](https://proof.tatastu.dev/account) for
+  a free API key, no card. Creating a stamp always needs either a key or an x402
+  payment; there is no anonymous free tier for creation.
 
 ## Credit bundles (prepaid, no expiry)
 
@@ -15,8 +17,8 @@
 | Creator | 500 stamps | $35 |
 | Studio | 2,000 stamps | $120 |
 
-Purchase at [tatastu.dev/proof](https://tatastu.dev/proof). Credits are non-refundable
-once consumed. They do not expire.
+Purchase at [proof.tatastu.dev/account](https://proof.tatastu.dev/account). Credits
+are non-refundable once consumed. They do not expire.
 
 ## Subscriptions
 

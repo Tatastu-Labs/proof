@@ -6,12 +6,15 @@
 import { stamp, hashText } from "@tatastu/proof"
 
 const hash = await hashText("你好，世界！")
-const receipt = await stamp({ contentHash: hash, title: "我的文章" })
+const receipt = await stamp({ contentHash: hash, title: "我的文章", apiKey: process.env.TATASTU_API_KEY })
 console.log(receipt.verifyUrl)
-// → https://tatastu.dev/p/prf_01jz...
+// → https://proof.tatastu.dev/p/prf_01jz...
 ```
 
-在线服务：[proof.tatastu.dev](https://proof.tatastu.dev) — 验证永久免费。
+盖章需要免费 API key：在 [proof.tatastu.dev/account](https://proof.tatastu.dev/account)
+登录一次即可获取，无需信用卡，每月 25 次盖章。验证哈希则永远不需要账号或密钥。
+
+在线服务：[proof.tatastu.dev](https://proof.tatastu.dev)，验证永久免费。
 
 ---
 
@@ -33,6 +36,12 @@ console.log(receipt.verifyUrl)
 npm install @tatastu/proof
 ```
 
+尚未发布到 npm 注册表：目前可直接从 GitHub 安装，安装时会自动构建。
+
+```bash
+npm install github:Tatastu-Labs/proof
+```
+
 ---
 
 ## 快速开始
@@ -43,9 +52,9 @@ npm install @tatastu/proof
 import { stamp, hashText } from "@tatastu/proof"
 
 const hash = await hashText("报告内容写在这里。")
-const receipt = await stamp({ contentHash: hash, title: "Q3 报告" })
-console.log(receipt.verifyUrl)   // https://tatastu.dev/p/prf_...
-console.log(receipt.byline)      // "Verified · https://tatastu.dev/p/prf_..."
+const receipt = await stamp({ contentHash: hash, title: "Q3 报告", apiKey: process.env.TATASTU_API_KEY })
+console.log(receipt.verifyUrl)   // https://proof.tatastu.dev/p/prf_...
+console.log(receipt.byline)      // "Verified · https://proof.tatastu.dev/p/prf_..."
 ```
 
 ### 验证内容
@@ -68,7 +77,7 @@ EU AI 法案第 50(4) 条要求对 AI 生成内容附加机器可读的溯源元
 import { stamp, hashText } from "@tatastu/proof"
 
 const aiOutput = "AI 生成的文本内容。"
-const receipt = await stamp({ contentHash: await hashText(aiOutput) })
+const receipt = await stamp({ contentHash: await hashText(aiOutput), apiKey: process.env.TATASTU_API_KEY })
 
 const labeledOutput = {
   text: aiOutput,

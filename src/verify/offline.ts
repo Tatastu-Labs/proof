@@ -30,8 +30,8 @@
  *   const result = await verifyOffline(bundle, "expected-sha256-hex")
  *   if (!result.valid) throw new Error(result.reason)
  *
- * @see https://github.com/tatastu-labs/proof
- * @see https://tatastu.dev/proof/docs
+ * @see https://github.com/Tatastu-Labs/proof
+ * @see https://proof.tatastu.dev/docs
  */
 
 /** Bundle JSON exactly as returned by GET https://proof.tatastu.dev/proof/:id/bundle */
