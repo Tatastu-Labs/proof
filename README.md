@@ -201,17 +201,21 @@ Deno, and modern browsers.
 
 ## Pricing
 
-| Tier | Price | Stamps |
-|------|-------|--------|
-| Free | $0 | 25/month |
-| Starter bundle | $8 | 100 (no expiry) |
-| Creator bundle | $35 | 500 (no expiry) |
-| Creator subscription | $12/month | 500/month |
-| Pay-per-stamp (x402) | $0.10 or $0.05 with API key | — |
+| Tier | Price | Stamps | Status |
+|------|-------|--------|--------|
+| Free | $0 | 25/month | Live |
+| Tatastu membership | $20/month (the whole [Tatastu app](https://tatastu.dev)) | 500/month included | Live |
+| Starter bundle | $8 | 100 (no expiry) | Launching soon |
+| Creator bundle | $35 | 500 (no expiry) | Launching soon |
+| Creator subscription | $12/month | 500/month | Launching soon |
+| Pay-per-stamp (x402) | $0.10, or $0.05 with API key | n/a | Launching soon |
 
 **Verification is always free and requires no account.**
 
-Full pricing: [docs/pricing.md](docs/pricing.md) and [tatastu.dev/proof](https://tatastu.dev/proof).
+"Launching soon" tiers are priced and committed but not yet purchasable; the API never
+routes you to a paywall that doesn't exist. Full, always-current pricing:
+[proof.tatastu.dev/pricing](https://proof.tatastu.dev/pricing) (mirrored in
+[docs/pricing.md](docs/pricing.md)).
 
 ---
 
