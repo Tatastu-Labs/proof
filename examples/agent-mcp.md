@@ -18,18 +18,23 @@ directly from Claude Code, Cursor, Windsurf, or any MCP-compatible client.
 }
 ```
 
-Omit the `headers` block to use the free tier (25 stamps/month, unlimited verify).
+`verify_proof` needs no header at all: verification is always free and anonymous.
+`create_proof` needs the `Authorization` header (a free key from
+[proof.tatastu.dev/account](https://proof.tatastu.dev/account), no card) or an
+x402 payment; there is no header-free lane for creating a stamp.
 
-## Cursor / Windsurf / other clients
+## Cursor / Windsurf / other MCP clients
+
+Any client that speaks MCP over Streamable HTTP uses the same URL, no separate
+package required:
 
 ```json
 {
   "mcpServers": {
     "tatastu-proof": {
-      "command": "npx",
-      "args": ["-y", "@tatastu/proof-mcp"],
-      "env": {
-        "TATASTU_API_KEY": "YOUR_API_KEY"
+      "url": "https://proof.tatastu.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
       }
     }
   }

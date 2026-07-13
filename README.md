@@ -1,5 +1,7 @@
 # Tatastu Proof
 
+[![CI](https://github.com/Tatastu-Labs/proof/actions/workflows/ci.yml/badge.svg)](https://github.com/Tatastu-Labs/proof/actions/workflows/ci.yml)
+
 One API call stamps any content with a permanent, publicly verifiable provenance record.
 Works from any language, any agent, any pipeline.
 
@@ -7,12 +9,16 @@ Works from any language, any agent, any pipeline.
 import { stamp, hashText } from "@tatastu/proof"
 
 const hash = await hashText("Hello, world!")
-const receipt = await stamp({ contentHash: hash, title: "My post" })
+const receipt = await stamp({ contentHash: hash, title: "My post", apiKey: process.env.TATASTU_API_KEY })
 console.log(receipt.verifyUrl)
-// → https://tatastu.dev/p/prf_01jz...
+// → https://proof.tatastu.dev/p/prf_01jz...
 ```
 
-Live service: [proof.tatastu.dev](https://proof.tatastu.dev) — verification is always free.
+Creating a stamp needs a free API key: sign in once at
+[proof.tatastu.dev/account](https://proof.tatastu.dev/account), no card, 25 stamps a
+month. Verifying a hash needs neither an account nor a key, ever.
+
+Live service: [proof.tatastu.dev](https://proof.tatastu.dev). Verification is always free.
 
 ---
 
@@ -40,10 +46,17 @@ claimed this content at this time." The claimed time (`signedAt`) and proven tim
 npm install @tatastu/proof
 ```
 
-Or use without installing:
+Not yet on the npm registry: install straight from GitHub in the meantime, which
+builds automatically on install.
 
 ```bash
-npx tsx examples/eu-ai-act-label.ts
+npm install github:Tatastu-Labs/proof
+```
+
+Or use without installing (needs a free key, see Quickstart below):
+
+```bash
+TATASTU_API_KEY=pk_... npx tsx examples/eu-ai-act-label.ts
 ```
 
 ---
@@ -56,10 +69,13 @@ npx tsx examples/eu-ai-act-label.ts
 import { stamp, hashText } from "@tatastu/proof"
 
 const hash = await hashText("The report content goes here.")
-const receipt = await stamp({ contentHash: hash, title: "Q3 Report" })
-console.log(receipt.verifyUrl)   // https://tatastu.dev/p/prf_...
-console.log(receipt.byline)      // "Verified · https://tatastu.dev/p/prf_..."
+const receipt = await stamp({ contentHash: hash, title: "Q3 Report", apiKey: process.env.TATASTU_API_KEY })
+console.log(receipt.verifyUrl)   // https://proof.tatastu.dev/p/prf_...
+console.log(receipt.byline)      // "Verified · https://proof.tatastu.dev/p/prf_..."
 ```
+
+Get a free key at [proof.tatastu.dev/account](https://proof.tatastu.dev/account)
+(no card, 25 stamps a month). Every example below needs the same key unless noted.
 
 ### Stamp a file (Node.js)
 
@@ -97,6 +113,7 @@ const file = dropEvent.dataTransfer.files[0]
 const receipt = await stamp({
   contentHash: await hashBlob(file),
   title: file.name,
+  apiKey: myApiKey, // from your own auth/session, not process.env in a browser
 })
 ```
 
@@ -133,7 +150,7 @@ The deadline is 2 August 2026.
 import { stamp, hashText } from "@tatastu/proof"
 
 const aiOutput = "AI-generated text goes here."
-const receipt = await stamp({ contentHash: await hashText(aiOutput) })
+const receipt = await stamp({ contentHash: await hashText(aiOutput), apiKey: process.env.TATASTU_API_KEY })
 
 const labeledOutput = {
   text: aiOutput,
@@ -147,10 +164,11 @@ const labeledOutput = {
 }
 ```
 
-Run the full example with no setup:
+Run the full example (needs a free key from
+[proof.tatastu.dev/account](https://proof.tatastu.dev/account)):
 
 ```bash
-npx tsx examples/eu-ai-act-label.ts
+TATASTU_API_KEY=pk_... npx tsx examples/eu-ai-act-label.ts
 ```
 
 See [docs/eu-ai-act.md](docs/eu-ai-act.md) for the compliance guide.
@@ -211,7 +229,8 @@ Deno, and modern browsers.
 
 **Verification is always free and requires no account.**
 
-Full pricing: [docs/pricing.md](docs/pricing.md) and [tatastu.dev/proof](https://tatastu.dev/proof).
+Full pricing: [docs/pricing.md](docs/pricing.md). Buy credits or manage keys at
+[proof.tatastu.dev/account](https://proof.tatastu.dev/account).
 
 ---
 

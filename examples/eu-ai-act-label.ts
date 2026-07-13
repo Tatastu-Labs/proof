@@ -8,8 +8,9 @@
  * This example shows the minimal pattern: generate content, stamp its hash, and
  * attach the verify URL and signed proof receipt to the output payload.
  *
- * Run with no setup required (free tier, no API key needed):
- *   npx tsx examples/eu-ai-act-label.ts
+ * Needs a free API key: sign in at https://proof.tatastu.dev/account (no card,
+ * 25 stamps/month), then run:
+ *   TATASTU_API_KEY=pk_... npx tsx examples/eu-ai-act-label.ts
  */
 
 import { hashText, stamp } from "../src/index.js"
@@ -24,6 +25,7 @@ async function generateLabeledOutput(content: string) {
     contentHash,
     contentType: "text/plain",
     title: "AI-generated financial summary",
+    apiKey: process.env.TATASTU_API_KEY,
     // Optional: add your creator ID for revocable stamps
     // creatorId: "did:key:z6Mk...",
   })

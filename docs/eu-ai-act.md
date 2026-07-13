@@ -24,8 +24,8 @@ A Tatastu Proof stamp does three things that matter for Article 50 compliance:
    Merkle tree anchored to Arweave and Base. The hash, creator identity, and
    signing time cannot be altered after anchoring without invalidating the proof.
 
-3. **Permanent public verifiability** — the verify URL at `tatastu.dev/p/{id}` is
-   always resolvable. Anyone can confirm the stamp without an account, API key, or
+3. **Permanent public verifiability**: the verify URL at `proof.tatastu.dev/p/{id}`
+   is always resolvable. Anyone can confirm the stamp without an account, API key, or
    our cooperation (via the offline verifier).
 
 ## Working code
@@ -41,11 +41,11 @@ The output shape:
   "_proof": {
     "contentHash": "a3f1...",
     "proofId": "prf_01jz...",
-    "verifyUrl": "https://tatastu.dev/p/prf_01jz...",
+    "verifyUrl": "https://proof.tatastu.dev/p/prf_01jz...",
     "signedAt": 1751760000000,
     "signingKeyId": "key-1",
-    "byline": "Verified · https://tatastu.dev/p/prf_01jz...",
-    "bylineHtml": "<a href=\"https://tatastu.dev/p/prf_01jz...\">Verified by Tatastu Proof</a>"
+    "byline": "Verified · https://proof.tatastu.dev/p/prf_01jz...",
+    "bylineHtml": "<a href=\"https://proof.tatastu.dev/p/prf_01jz...\">Verified by Tatastu Proof</a>"
   }
 }
 ```
@@ -71,5 +71,5 @@ transparency log; only the status field is updated.
 ## Further reading
 
 - [EU AI Act full text (CELEX:32024R1689)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689)
-- [Tatastu Proof API reference](https://tatastu.dev/proof)
+- [Tatastu Proof API reference](https://proof.tatastu.dev/docs)
 - [C2PA relationship](./c2pa.md)
