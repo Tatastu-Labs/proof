@@ -39,7 +39,7 @@
   ],
   "author": "Tatastu Labs",
   "license": "MIT",
-  "homepage": "https://tatastu.dev/content-authenticity",
+  "homepage": "https://proof.tatastu.dev",
   "repository": {
     "type": "git",
     "url": "https://github.com/tatastu-labs/proof"
