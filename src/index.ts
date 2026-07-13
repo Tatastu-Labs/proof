@@ -12,8 +12,8 @@
  * "this creator claimed this content at this time." Claimed time (signedAt)
  * and proven time (anchored) are distinct and both surfaced in every receipt.
  *
- * @see https://tatastu.dev/content-authenticity
  * @see https://proof.tatastu.dev
+ * @see https://proof.tatastu.dev/pricing
  */
 
 export type { ProofBundle, ProofReceipt, ProofStatus, StampOptions, VerifyProof, VerifyResult } from "./types.js"
