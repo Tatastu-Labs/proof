@@ -96,5 +96,8 @@ All tools include MCP `annotations`:
 ## Free tier
 
 Verification tools (`verify_proof`, `list_proofs`) are always free and unmetered.
-`create_proof` is free up to 25 stamps/month without an API key. Add a creator API key
-header for paid-tier quotas.
+`create_proof` needs an API key: call `create_account` once (free, instant, no human in
+the loop) and the key includes 25 stamps/month. A key minted by signing in at
+[proof.tatastu.dev/account](https://proof.tatastu.dev/account) with a Tatastu
+subscription email includes 500 stamps/month. Full pricing:
+[proof.tatastu.dev/pricing](https://proof.tatastu.dev/pricing).
