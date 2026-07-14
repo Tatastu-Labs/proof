@@ -8,7 +8,7 @@ import { stamp, hashText } from "@tatastu/proof"
 const hash = await hashText("你好，世界！")
 const receipt = await stamp({ contentHash: hash, title: "我的文章" })
 console.log(receipt.verifyUrl)
-// → https://tatastu.dev/p/prf_01jz...
+// → https://proof.tatastu.dev/p/prf_01jz...
 ```
 
 在线服务：[proof.tatastu.dev](https://proof.tatastu.dev) — 验证永久免费。
@@ -44,8 +44,8 @@ import { stamp, hashText } from "@tatastu/proof"
 
 const hash = await hashText("报告内容写在这里。")
 const receipt = await stamp({ contentHash: hash, title: "Q3 报告" })
-console.log(receipt.verifyUrl)   // https://tatastu.dev/p/prf_...
-console.log(receipt.byline)      // "Verified · https://tatastu.dev/p/prf_..."
+console.log(receipt.verifyUrl)   // https://proof.tatastu.dev/p/prf_...
+console.log(receipt.byline)      // "Verified · https://proof.tatastu.dev/p/prf_..."
 ```
 
 ### 验证内容

@@ -9,7 +9,7 @@ import { stamp, hashText } from "@tatastu/proof"
 const hash = await hashText("Hello, world!")
 const receipt = await stamp({ contentHash: hash, title: "My post" })
 console.log(receipt.verifyUrl)
-// → https://tatastu.dev/p/prf_01jz...
+// → https://proof.tatastu.dev/p/prf_01jz...
 ```
 
 Live service: [proof.tatastu.dev](https://proof.tatastu.dev) — verification is always free.
@@ -57,8 +57,8 @@ import { stamp, hashText } from "@tatastu/proof"
 
 const hash = await hashText("The report content goes here.")
 const receipt = await stamp({ contentHash: hash, title: "Q3 Report" })
-console.log(receipt.verifyUrl)   // https://tatastu.dev/p/prf_...
-console.log(receipt.byline)      // "Verified · https://tatastu.dev/p/prf_..."
+console.log(receipt.verifyUrl)   // https://proof.tatastu.dev/p/prf_...
+console.log(receipt.byline)      // "Verified · https://proof.tatastu.dev/p/prf_..."
 ```
 
 ### Stamp a file (Node.js)
