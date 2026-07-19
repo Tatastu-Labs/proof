@@ -66,7 +66,7 @@ export interface ProofReceipt {
   /** Previous proof ID if this is a superseding stamp. */
   previousProofId?: string
 
-  /** Plain-text byline: `"Verified · https://tatastu.dev/p/..."` */
+  /** Plain-text byline: `"Verified · https://proof.tatastu.dev/p/..."` */
   byline: string
 
   /** One-line HTML byline, always XSS-safe. */

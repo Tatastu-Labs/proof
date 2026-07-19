@@ -69,7 +69,7 @@ async function apiFetch<T>(
  *
  * const hash = await hashText("Hello, world!")
  * const receipt = await stamp({ contentHash: hash, title: "My post" })
- * console.log(receipt.verifyUrl)  // https://tatastu.dev/p/prf_01jz...
+ * console.log(receipt.verifyUrl)  // https://proof.tatastu.dev/p/prf_01jz...
  * ```
  */
 export async function stamp(opts: StampOptions): Promise<ProofReceipt> {
