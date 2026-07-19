@@ -216,10 +216,10 @@ Deno, and modern browsers.
 | Tier | Price | Stamps | Status |
 |------|-------|--------|--------|
 | Free | $0 | 5/month | Live |
-| Tatastu membership | $20/month (the whole [Tatastu app](https://tatastu.dev)) | 500/month included | Live |
+| Tatastu membership | $20/month (the whole [Tatastu app](https://tatastu.dev)) | 100/month included | Live |
 | Starter bundle | $8 | 100 (no expiry) | Launching soon |
 | Creator bundle | $35 | 500 (no expiry) | Launching soon |
-| Creator subscription | $12/month | 500/month | Launching soon |
+| Creator subscription | $12/month | 100/month | Launching soon |
 | Pay-per-stamp (x402) | $0.10, or $0.05 with API key | n/a | Launching soon |
 
 **Verification is always free and requires no account.**

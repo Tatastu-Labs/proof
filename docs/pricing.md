@@ -14,10 +14,10 @@ Canonical, always-current pricing lives at
 - Unlimited verification (no account required)
 - Full offline verifiability once anchored
 
-### Tatastu members: 500 stamps/month included
+### Tatastu members: 100 stamps/month included
 
 An active [Tatastu](https://tatastu.dev) app subscription ($20/month for the whole Mac
-AI workspace) includes the Creator plan: 500 stamps/month. Sign in at
+AI workspace) includes the Creator plan: 100 stamps/month. Sign in at
 [proof.tatastu.dev/account](https://proof.tatastu.dev/account) with your Tatastu email
 and create a key; it carries the Creator plan automatically.
 
@@ -50,7 +50,7 @@ runs out, so they never go to waste.
 
 | Plan | Price | Monthly stamps |
 |------|-------|----------------|
-| Creator | $12/month | 500 |
+| Creator | $12/month | 100 |
 | Pro | $49/month | 2,000 |
 | Team | $149/month | 10,000 |
 
