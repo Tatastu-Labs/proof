@@ -7,7 +7,7 @@ Canonical, always-current pricing lives at
 
 ### Free tier
 
-- 25 stamps/month with an API key
+- 5 stamps/month with an API key
 - Keys are free and instant: `POST /keys` (no auth, built for agents), the
   `create_account` MCP tool, or sign in at
   [proof.tatastu.dev/account](https://proof.tatastu.dev/account)

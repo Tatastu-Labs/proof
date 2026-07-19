@@ -1,0 +1,31 @@
+name: CI
+
+# Typecheck + offline-verifier tests on every PR and push to main, so a
+# regression is caught before it reaches a version tag (publish.yml only runs
+# on tag push, so nothing here previously ran on PRs at all).
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: "22.14.0"
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck + build
+        run: npm run build
+
+      - name: Offline-verifier tests
+        run: npm test
