@@ -1,7 +1,17 @@
 # Tatastu Proof
 
-One API call stamps any content with a permanent, publicly verifiable provenance record.
-Works from any language, any agent, any pipeline.
+[![npm version](https://img.shields.io/npm/v/@tatastu/proof.svg)](https://www.npmjs.com/package/@tatastu/proof)
+[![CI](https://github.com/Tatastu-Labs/proof/actions/workflows/ci.yml/badge.svg)](https://github.com/Tatastu-Labs/proof/actions/workflows/ci.yml)
+[![service status](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fproof.tatastu.dev%2Fhealth&query=%24.ok&label=service&color=success&logo=cloudflare)](https://proof.tatastu.dev/health)
+[![license](https://img.shields.io/npm/l/@tatastu/proof.svg)](LICENSE)
+
+**A working answer to EU AI Act Article 50.** Article 50(4) requires providers of
+general-purpose AI systems to mark AI-generated content with machine-readable
+provenance metadata by **2 August 2026**. Tatastu Proof is one API call: hash the
+content locally, get back a permanent, publicly verifiable record of who signed it and
+when. Works from any language, any agent, any pipeline. (This is not legal advice;
+whether a given stamp satisfies your specific Article 50 obligation depends on your use
+case and counsel, see [docs/eu-ai-act.md](docs/eu-ai-act.md).)
 
 ```ts
 import { stamp, hashText } from "@tatastu/proof"
@@ -13,6 +23,8 @@ console.log(receipt.verifyUrl)
 ```
 
 Live service: [proof.tatastu.dev](https://proof.tatastu.dev) — verification is always free.
+Open the printed `verifyUrl` in a browser to see the public record: signer, timestamp,
+and the Arweave/Base anchor once it lands.
 
 ---
 
@@ -203,11 +215,11 @@ Deno, and modern browsers.
 
 | Tier | Price | Stamps | Status |
 |------|-------|--------|--------|
-| Free | $0 | 25/month | Live |
-| Tatastu membership | $20/month (the whole [Tatastu app](https://tatastu.dev)) | 500/month included | Live |
+| Free | $0 | 5/month | Live |
+| Tatastu membership | $20/month (the whole [Tatastu app](https://tatastu.dev)) | 100/month included | Live |
 | Starter bundle | $8 | 100 (no expiry) | Launching soon |
 | Creator bundle | $35 | 500 (no expiry) | Launching soon |
-| Creator subscription | $12/month | 500/month | Launching soon |
+| Creator subscription | $12/month | 100/month | Launching soon |
 | Pay-per-stamp (x402) | $0.10, or $0.05 with API key | n/a | Launching soon |
 
 **Verification is always free and requires no account.**
@@ -219,7 +231,25 @@ routes you to a paywall that doesn't exist. Full, always-current pricing:
 
 ---
 
+## Integrations and examples
+
+| Framework / target | File |
+|---|---|
+| LangChain (tool-calling agent) | [examples/langchain-tool.ts](examples/langchain-tool.ts) |
+| Vercel AI SDK | [examples/vercel-ai-tool.ts](examples/vercel-ai-tool.ts) |
+| CrewAI / AutoGen (Python) | [examples/crewai-autogen-tool.py](examples/crewai-autogen-tool.py) |
+| MCP (Claude Code, Cursor, Windsurf) | [examples/agent-mcp.md](examples/agent-mcp.md) |
+| ChatGPT Actions (OpenAPI 3.1) | hosted at [proof.tatastu.dev/.well-known/gpt-actions.json](https://proof.tatastu.dev/.well-known/gpt-actions.json), source: [examples/gpt-actions.json](examples/gpt-actions.json) |
+| Browser, no build step | [examples/browser-drop.html](examples/browser-drop.html) |
+| Node.js CLI | [examples/node-stamp.ts](examples/node-stamp.ts) |
+| EU AI Act labeling | [examples/eu-ai-act-label.ts](examples/eu-ai-act-label.ts) |
+
+Full REST reference (every endpoint, error table, rate limits): [docs/api.md](docs/api.md).
+
+---
+
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). The service, Worker, and D1 schema are in a
+See [CONTRIBUTING.md](CONTRIBUTING.md). Found a security issue? See
+[SECURITY.md](SECURITY.md) instead of opening a public issue. The service, Worker, and D1 schema are in a
 private repo — this repo contains only the public SDK, offline verifier, and examples.

@@ -31,9 +31,9 @@ const receipt = await stamp({
 })
 
 console.log(receipt.verifyUrl)
-// → https://tatastu.dev/p/prf_01jz...
+// → https://proof.tatastu.dev/p/prf_01jz...
 console.log(receipt.byline)
-// → "Verified · https://tatastu.dev/p/prf_01jz..."
+// → "Verified · https://proof.tatastu.dev/p/prf_01jz..."
 ```
 
 ## Browser

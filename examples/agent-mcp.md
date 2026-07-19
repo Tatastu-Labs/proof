@@ -19,7 +19,7 @@ directly from Claude Code, Cursor, Windsurf, or any MCP-compatible client.
 ```
 
 No key yet? Omit the `headers` block and have the agent call the `create_account`
-tool once: it returns a persistent key (free tier, 25 stamps/month) the agent then
+tool once: it returns a persistent key (free tier, 5 stamps/month) the agent then
 sends as the Authorization header. Verification tools never need a key.
 
 ## Cursor / Windsurf / other clients

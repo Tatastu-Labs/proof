@@ -1,6 +1,15 @@
 # Tatastu Proof
 
-一行 API 调用，为任何内容盖上永久、可公开验证的溯源印记。支持任何语言、任何 AI 智能体和任何流水线。
+[![npm version](https://img.shields.io/npm/v/@tatastu/proof.svg)](https://www.npmjs.com/package/@tatastu/proof)
+[![CI](https://github.com/Tatastu-Labs/proof/actions/workflows/ci.yml/badge.svg)](https://github.com/Tatastu-Labs/proof/actions/workflows/ci.yml)
+[![service status](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fproof.tatastu.dev%2Fhealth&query=%24.ok&label=service&color=success&logo=cloudflare)](https://proof.tatastu.dev/health)
+[![license](https://img.shields.io/npm/l/@tatastu/proof.svg)](LICENSE)
+
+**应对欧盟《人工智能法案》第 50 条的实用方案。** 第 50(4) 条要求通用人工智能系统的提供者为 AI
+生成的内容打上机器可读的溯源标记，截止日期为 **2026 年 8 月 2 日**。Tatastu Proof 只需一次 API
+调用：在本地对内容进行哈希，即可获得一条永久、可公开验证的记录，证明是谁签署了它、以及签署时间。
+支持任何语言、任何智能体、任何流水线。（这不构成法律意见；某次盖章是否满足你具体的第 50 条义务，
+取决于你的使用场景和法律顾问的判断，参见 [docs/eu-ai-act.md](docs/eu-ai-act.md)。）
 
 ```ts
 import { stamp, hashText } from "@tatastu/proof"
@@ -11,7 +20,8 @@ console.log(receipt.verifyUrl)
 // → https://proof.tatastu.dev/p/prf_01jz...
 ```
 
-在线服务：[proof.tatastu.dev](https://proof.tatastu.dev) — 验证永久免费。
+在线服务：[proof.tatastu.dev](https://proof.tatastu.dev)，验证永久免费。在浏览器中打开返回的
+`verifyUrl`，即可看到公开记录：签署者、时间戳，以及锚定完成后的 Arweave/Base 锚定信息。
 
 ---
 
@@ -127,11 +137,11 @@ console.log(result.valid, result.signatureVerified, result.merkleVerified)
 
 | 套餐 | 价格 | 印记数 | 状态 |
 |------|------|--------|------|
-| 免费 | $0 | 25/月 | 已上线 |
-| Tatastu 会员 | $20/月（含整个 [Tatastu 应用](https://tatastu.dev)） | 每月含 500 次 | 已上线 |
+| 免费 | $0 | 5/月 | 已上线 |
+| Tatastu 会员 | $20/月（含整个 [Tatastu 应用](https://tatastu.dev)） | 每月含 100 次 | 已上线 |
 | 入门包 | $8 | 100 次（永不过期） | 即将上线 |
 | 创作者包 | $35 | 500 次（永不过期） | 即将上线 |
-| 创作者订阅 | $12/月 | 500/月 | 即将上线 |
+| 创作者订阅 | $12/月 | 100/月 | 即将上线 |
 | 按次付费（x402） | $0.10 或 $0.05（API key） | n/a | 即将上线 |
 
 **验证永久免费，无需注册账号。**
