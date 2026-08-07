@@ -8,9 +8,10 @@ Canonical, always-current pricing lives at
 ### First stamp
 
 - One lifetime sample stamp per durable Proof account
-- Keys are free and instant: `POST /keys` (no auth, built for agents), the
-  `create_account` MCP tool, or sign in at
-  [proof.tatastu.dev/account](https://proof.tatastu.dev/account)
+- Humans sign in at [proof.tatastu.dev/account](https://proof.tatastu.dev/account),
+  choose a file, and stamp it without creating or handling an API key
+- Portable keys for agents and other apps are free and instant: `POST /keys`
+  (no auth) or the `create_account` MCP tool
 - Unlimited verification (no account required)
 - Full offline verifiability once anchored
 
@@ -19,7 +20,8 @@ Canonical, always-current pricing lives at
 An active [Tatastu](https://tatastu.dev) app subscription ($20/month for the whole Mac
 AI workspace) includes the Creator plan: 100 stamps/month. Sign in at
 [proof.tatastu.dev/account](https://proof.tatastu.dev/account) with your Tatastu email
-and create a key; it carries the Creator plan automatically.
+and stamp directly in the browser. Create a portable key only when an agent, script,
+or another application needs to use the account.
 
 ### Verification is always free
 

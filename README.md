@@ -26,6 +26,11 @@ Live service: [proof.tatastu.dev](https://proof.tatastu.dev) — verification is
 Open the printed `verifyUrl` in a browser to see the public record: signer, timestamp,
 and the Arweave/Base anchor once it lands.
 
+**For people:** sign in at [proof.tatastu.dev/account](https://proof.tatastu.dev/account),
+choose a file, and make the lifetime sample stamp without creating an API key. The file is
+hashed in the browser and never uploaded. API keys are portable credentials for agents,
+scripts, and other applications.
+
 ---
 
 ## What it does

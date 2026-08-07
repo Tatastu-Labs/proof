@@ -23,6 +23,10 @@ console.log(receipt.verifyUrl)
 在线服务：[proof.tatastu.dev](https://proof.tatastu.dev)，验证永久免费。在浏览器中打开返回的
 `verifyUrl`，即可看到公开记录：签署者、时间戳，以及锚定完成后的 Arweave/Base 锚定信息。
 
+**个人用户：**登录 [proof.tatastu.dev/account](https://proof.tatastu.dev/account)，选择文件即可使用
+终身一次的免费印记，无需创建 API 密钥。文件只在浏览器中进行哈希处理，绝不会上传。API 密钥仅作为
+智能体、脚本及其他应用使用的可移植凭据。
+
 ---
 
 ## 功能说明
