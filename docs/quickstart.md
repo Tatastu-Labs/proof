@@ -27,7 +27,7 @@ const receipt = await stamp({
   contentHash,
   contentType: "application/pdf",
   title: "Q3 Financial Report",
-  apiKey: process.env.TATASTU_API_KEY, // omit for free tier
+  apiKey: process.env.TATASTU_API_KEY, // the account's first stamp is free
 })
 
 console.log(receipt.verifyUrl)

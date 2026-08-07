@@ -93,11 +93,11 @@ All tools include MCP `annotations`:
 - `list_proofs`: `readOnlyHint: true`, `idempotentHint: true`
 - `revoke_proof`: `readOnlyHint: false`, `idempotentHint: false`
 
-## Free tier
+## Included stamps
 
 Verification tools (`verify_proof`, `list_proofs`) are always free and unmetered.
 `create_proof` needs an API key: call `create_account` once (free, instant, no human in
-the loop) and the key includes 5 stamps/month. A key minted by signing in at
+the loop) and the durable account includes one lifetime sample stamp. A key minted by signing in at
 [proof.tatastu.dev/account](https://proof.tatastu.dev/account) with a Tatastu
 subscription email includes 100 stamps/month. Full pricing:
 [proof.tatastu.dev/pricing](https://proof.tatastu.dev/pricing).

@@ -31,7 +31,7 @@ same free tier under their own identity.
 
 ### `POST /proof`
 
-`Authorization: Bearer pk_...` (or an x402 payment, launching soon). Body:
+`Authorization: Bearer pk_...` (or an x402 payment). Body:
 
 ```json
 {
@@ -74,8 +74,8 @@ what to do next: follow `next`, no support ticket.
 ## Rate limits
 
 - Self-serve key minting (`POST /keys`): 3 per network per day.
-- Stamping: bounded by your plan's monthly allowance (5/month free, 100/month with a
-  Tatastu membership), not a request-rate limit; the plan cap returns `402` with `next`.
+- Stamping: one lifetime sample per durable account; 100/month with a Tatastu membership;
+  prepaid credits or x402 after that. This is not a request-rate limit.
 
 ## Offline verification walkthrough
 

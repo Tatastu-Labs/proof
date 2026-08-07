@@ -5,9 +5,9 @@ Canonical, always-current pricing lives at
 
 ## Available today
 
-### Free tier
+### First stamp
 
-- 5 stamps/month with an API key
+- One lifetime sample stamp per durable Proof account
 - Keys are free and instant: `POST /keys` (no auth, built for agents), the
   `create_account` MCP tool, or sign in at
   [proof.tatastu.dev/account](https://proof.tatastu.dev/account)
@@ -28,33 +28,20 @@ free, unmetered, and require no account, permanently. Content verification is a
 zero-friction public good: you should never need to pay or sign in to check whether
 something is authentic.
 
-## Launching soon (not yet purchasable)
-
-These lanes are built and priced; they are being switched on carefully. Until then
-nothing below can be bought, and the API will never dead-end you into a paywall that
-doesn't exist. Need volume before they launch? Write to
-[support@tatastu.dev](mailto:support@tatastu.dev).
-
 ### Credit bundles (prepaid, no expiry)
 
-| Bundle | Credits | Price |
-|--------|---------|-------|
-| Starter | 100 stamps | $8 |
-| Creator | 500 stamps | $35 |
-| Studio | 2,000 stamps | $120 |
+| Stamps | Price | Per stamp |
+|-------:|------:|----------:|
+| 5 | $1.00 | $0.200 |
+| 10 | $1.50 | $0.150 |
+| 50 | $5.00 | $0.100 |
+| 100 | $8.00 | $0.080 |
+| 500 | $35.00 | $0.070 |
+| 1,000 | $65.00 | $0.065 |
+| 2,000 | $120.00 | $0.060 |
 
 Your monthly included allowance is always consumed first; credits only burn after it
 runs out, so they never go to waste.
-
-### Subscriptions
-
-| Plan | Price | Monthly stamps |
-|------|-------|----------------|
-| Creator | $12/month | 100 |
-| Pro | $49/month | 2,000 |
-| Team | $149/month | 10,000 |
-
-Creator is already included free with a Tatastu app subscription.
 
 ### Pay-per-stamp (x402)
 
@@ -65,8 +52,8 @@ USDC on Base via the [x402 protocol](https://x402.org):
 
 This is the programmatic lane for agents and pipelines that need to stamp on demand
 without pre-purchasing credits. Payment is attached to the HTTP request header, with no
-separate billing step. Until it is live, a keyless `POST /proof` returns
-`503 payment_unavailable` with the exact next step (a free key via `POST /keys`).
+separate billing step. A keyless `POST /proof` returns machine-readable 402 requirements
+and points to `POST /keys` for the one lifetime sample.
 
 ## What counts as a stamp
 

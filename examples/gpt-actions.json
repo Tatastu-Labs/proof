@@ -13,7 +13,7 @@
       "post": {
         "operationId": "createFreeKey",
         "summary": "Create a free API key",
-        "description": "Mints a free API key with no email or account required. Returns the secret key — store it, it's shown only once. Free keys include 5 stamps per calendar month.",
+        "description": "Mints an API key with no email or account required. Returns the secret key — store it, it's shown only once. Each durable account includes one lifetime sample stamp.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -171,7 +171,7 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "pk_...",
-        "description": "Free API key from https://tatastu.dev/proof. 5 stamps/month free."
+        "description": "API key from https://proof.tatastu.dev/account. Each durable account includes one lifetime sample stamp."
       }
     }
   }

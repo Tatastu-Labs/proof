@@ -17,7 +17,7 @@ case and counsel, see [docs/eu-ai-act.md](docs/eu-ai-act.md).)
 import { stamp, hashText } from "@tatastu/proof"
 
 const hash = await hashText("Hello, world!")
-const receipt = await stamp({ contentHash: hash, title: "My post" })
+const receipt = await stamp({ contentHash: hash, title: "My post", apiKey: process.env.TATASTU_API_KEY })
 console.log(receipt.verifyUrl)
 // → https://proof.tatastu.dev/p/prf_01jz...
 ```
@@ -68,7 +68,7 @@ npx tsx examples/eu-ai-act-label.ts
 import { stamp, hashText } from "@tatastu/proof"
 
 const hash = await hashText("The report content goes here.")
-const receipt = await stamp({ contentHash: hash, title: "Q3 Report" })
+const receipt = await stamp({ contentHash: hash, title: "Q3 Report", apiKey: process.env.TATASTU_API_KEY })
 console.log(receipt.verifyUrl)   // https://proof.tatastu.dev/p/prf_...
 console.log(receipt.byline)      // "Verified · https://proof.tatastu.dev/p/prf_..."
 ```
@@ -215,17 +215,16 @@ Deno, and modern browsers.
 
 | Tier | Price | Stamps | Status |
 |------|-------|--------|--------|
-| Free | $0 | 5/month | Live |
+| First stamp | $0 | 1 lifetime sample per durable account | Live |
 | Tatastu membership | $20/month (the whole [Tatastu app](https://tatastu.dev)) | 100/month included | Live |
-| Starter bundle | $8 | 100 (no expiry) | Launching soon |
-| Creator bundle | $35 | 500 (no expiry) | Launching soon |
-| Creator subscription | $12/month | 100/month | Launching soon |
-| Pay-per-stamp (x402) | $0.10, or $0.05 with API key | n/a | Launching soon |
+| Prepaid packs | $1 / $1.50 / $5 / $8 | 5 / 10 / 50 / 100 (no expiry) | Live |
+| Volume packs | $35 / $65 / $120 | 500 / 1,000 / 2,000 (no expiry) | Live |
+| Pay-per-stamp (x402) | $0.10, or $0.05 with API key | one stamp | Live |
 
 **Verification is always free and requires no account.**
 
-"Launching soon" tiers are priced and committed but not yet purchasable; the API never
-routes you to a paywall that doesn't exist. Full, always-current pricing:
+The checkout page reveals only packs that the live offer manifest reports as available.
+Full, always-current pricing:
 [proof.tatastu.dev/pricing](https://proof.tatastu.dev/pricing) (mirrored in
 [docs/pricing.md](docs/pricing.md)).
 
